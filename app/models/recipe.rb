@@ -4,4 +4,9 @@ class Recipe < ApplicationRecord
   
   has_many :foods, through: :recipe_foods
   validates :name, :description, :cooking_time, :prep_time, presence: true
+
+  after_initialize :init
+  def init
+    self.recipe_foods_count ||= 0
+  end
 end

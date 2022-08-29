@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:public]
 
   def index
-    @recipes = current_user.recipes.includes(:user)
+    @recipes = current_user.recipes.includes(:recipe_foods, :user)
   end
 
   def show
@@ -32,7 +32,17 @@ class RecipesController < ApplicationController
   end
 
   def public
-    @recipes = Recipe.all.order(created_at: :desc).includes(:user)
+    @recipes = Recipe.includes(:recipe_foods, :foods, :user).where(public: true).order(created_at: :desc).map do |recipe|
+      {
+        id: recipe.id,
+        name: recipe.name,
+        description: recipe.description,
+        author: recipe.user.name,
+        created_at: recipe.created_at,
+        items: recipe.recipe_foods_count,
+        total_price: recipe.foods.map(&:price).sum,
+      }
+    end
   end
 
   private
