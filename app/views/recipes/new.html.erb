@@ -16,12 +16,12 @@
 
   <div class="flex gap-3">
     <%= f.label :description, class: 'text-semibold' %>
-    <%= f.text_field :description, class: 'border-1 shadow-md h-16 outline-blue-500 p-1' %>
+    <%= f.text_area :description, class: 'border-1 shadow-md h-16 outline-blue-500 p-1' %>
   </div>
 
   <div class="flex gap-3">
     <%= f.label :public, class: 'text-semibold' %>
-    <%= f.text_field :public, class: 'border-1 shadow-md h-16 outline-blue-500 p-1' %>
+    <%= f.check_box :public, class: 'border-1 shadow-md h-16 outline-blue-500 p-1' %>
   </div>
 
   <div class="bg-green-500 mt-4 rounded-sm p-2 text-white">

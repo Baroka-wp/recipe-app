@@ -3,12 +3,13 @@
 <button>
 <ul class="w-full flex flex-col gap-2 p-4 items-center">
   <% @recipes.each do |recipe| %>
-    <li>
-      <a class="border-2 p-2" href="#">
-        <div>
-          <h3><%= recipe.name %></h3>
+    <li class="w-9/12">
+      <a class="w-full flex border-2 p-2" href="<%= recipe_path(recipe)%>">
+        <div class="flex flex-col items-center p-2>
+          <h3 class="font-semibold"><%= recipe.name %></h3>
+          <button class="p-2 text-center bg-red-500">Delete</button>
         </div>
-        <p><%= recipe.description %></p>
+        <p class="p-2"><%= recipe.description %></p>
       </a>
     </li>
   <% end %>
