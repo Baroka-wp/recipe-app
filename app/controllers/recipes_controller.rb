@@ -13,7 +13,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
-    flash[:notice] = "Recipe deleted successfully"
+    flash[:notice] = 'Recipe deleted successfully'
     redirect_to recipes_path
   end
 
@@ -32,7 +32,8 @@ class RecipesController < ApplicationController
   end
 
   def public
-    @recipes = Recipe.includes(:recipe_foods, :foods, :user).where(public: true).order(created_at: :desc).map do |recipe|
+    @recipes = Recipe.includes(:recipe_foods, :foods,
+                               :user).where(public: true).order(created_at: :desc).map do |recipe|
       {
         id: recipe.id,
         name: recipe.name,
@@ -40,12 +41,13 @@ class RecipesController < ApplicationController
         author: recipe.user.name,
         created_at: recipe.created_at,
         items: recipe.recipe_foods_count,
-        total_price: recipe.foods.map(&:price).sum,
+        total_price: recipe.foods.map(&:price).sum
       }
     end
   end
 
   private
+
   def recipe_params
     params.require(:recipe).permit(:name, :description, :prep_time, :cooking_time)
   end

@@ -1,5 +1,4 @@
 class RecipeFoodsController < ApplicationController
-
   def edit
     @recipe_food = RecipeFood.find(params[:id])
   end
@@ -7,10 +6,10 @@ class RecipeFoodsController < ApplicationController
   def update
     @recipe_food = RecipeFood.find(params[:id])
     if @recipe_food.update(recipe_food_params)
-      flash[:succes] = "Recipe food updated successfully"
+      flash[:succes] = 'Recipe food updated successfully'
       redirect_to recipe_path(@recipe_food.recipe)
     else
-      flash[:succes] = "Recipe food update failed"
+      flash[:succes] = 'Recipe food update failed'
       render :edit
     end
   end
@@ -31,6 +30,7 @@ class RecipeFoodsController < ApplicationController
   end
 
   private
+
   def recipe_food_params
     params.require(:recipe_food).permit(:quantity, :food_id)
   end
