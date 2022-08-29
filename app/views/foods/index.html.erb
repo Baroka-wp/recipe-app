@@ -3,12 +3,12 @@
   <button class="w-32 self-end bg-blue-500 text-white p-2 my-3" type="button">
     <%= link_to 'Add Food', new_food_path %>
   <button>
-  <section class="w-full flex flex-col">
+  <section class="w-11/12 self-center flex flex-col">
   <div class="w-full flex">
-    <p class="p-2 text-center">Food</p>
-    <p class="p-2 text-center">Measurement unit</p>
-    <p class="p-2 text-center">Unit price</p>
-    <p class="p-2 text-center">Actions</p>
+    <p class="p-2 w-full text-center">Food</p>
+    <p class="p-2 w-full text-center">Measurement unit</p>
+    <p class="p-2 w-full text-center">Unit price</p>
+    <p class="p-2 w-full text-center">Actions</p>
   </div>
   <ul class="w-full flex flex-col gap-2 p-4 items-center">
     <% @foods.each do |food| %>
