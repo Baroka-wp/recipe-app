@@ -1,0 +1,17 @@
+<div class="list-group w-80">
+    <% recipes.each do |recipe| %>
+        <div class="list-group-item list-group-item-action rounded-3 d-flex gap-4 py-3 px-3" aria-current="true">
+            <div class="d-flex gap-4 w-100 justify-content-between">
+            <div>
+                <h4 class="mb-0"><%=link_to recipe.name, recipe %></h4>
+                <small class="opacity-50 text-nowrap">by <%= recipe.user.name  %></small>
+                <p class="mb-0 opacity-75"><%= recipe.description.truncate(100)%></p>
+                <% if can? :manage, recipe%>
+                    <%= button_to 'delete', recipe, data: { confirm: "This action will delete the item "}, method: :delete, class:"btn btn-sm btn-danger"%>
+                <% end %>
+            </div>
+            <small class="opacity-50 text-nowrap"><%= time_ago_in_words(recipe.created_at) %></small>
+            </div>
+        </div>
+    <% end%>
+</div>

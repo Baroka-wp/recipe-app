@@ -1,0 +1,11 @@
+header a {
+    color:azure
+}
+header a:hover {
+    color: salmon
+}
+
+.btn-salmon {
+    background-color: salmon;
+    color: azure;
+}
