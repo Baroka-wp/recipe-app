@@ -1,0 +1,9 @@
+<div class="log_menu">
+        <% if user_signed_in? %>
+            <div class="user_name">Hi! <%= link_to current_user.name, user_path(current_user) %></div>
+            <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: false }, class:"log_out" %>
+        <% else %>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+            <li><%= link_to 'Sign up', new_user_registration_path %></li>
+        <% end %>
+</div>

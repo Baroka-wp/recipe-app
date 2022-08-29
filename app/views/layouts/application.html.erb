@@ -11,6 +11,12 @@
   </head>
 
   <body>
+    <%= render 'layouts/shared/log_menu' %>
+    <div class="flash">
+      <% flash.each do |name, message| %>
+        <div class="<%= name %>"><%= message %></div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
