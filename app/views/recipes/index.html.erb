@@ -1,7 +1,7 @@
 <main class="p-5 flex flex-col">
   <h1 class="font-bold text-3xl">Recipes page</h1>
   <button class="w-32 bg-blue-500 text-white p-2 my-3" type="button">
-    <%= link_to 'New Recipe', new_recipe_path %>
+    <%= link_to 'Add Recipe', new_recipe_path %>
   <button>
   <ul class="w-full flex flex-col gap-2 p-4 items-center">
     <% @recipes.each do |recipe| %>
