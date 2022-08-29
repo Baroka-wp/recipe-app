@@ -1,11 +1,11 @@
 class RecipesController < ApplicationController
-   def index
+  def index
     @recipes = Recipe.where(user_id: current_user.id).includes(:recipe_foods)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @recipes }
-      format.json { render :json => @recipes }
+      format.xml { render xml: @recipes }
+      format.json { render json: @recipes }
     end
   end
 
