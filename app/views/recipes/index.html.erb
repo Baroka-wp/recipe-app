@@ -1,16 +1,18 @@
-<button class="bg-blue-500 text-white p-2 my-1" type="button">
-  <%= link_to 'New Recipe', new_recipe_path %>
-<button>
-<ul class="w-full flex flex-col gap-2 p-4 items-center">
-  <% @recipes.each do |recipe| %>
-    <li class="w-9/12">
-      <a class="w-full flex border-2 p-2" href="<%= recipe_path(recipe)%>">
-        <div class="flex flex-col items-center p-2>
+<main class="p-5 flex flex-col">
+  <h1 class="font-bold text-3xl">Recipes page</h1>
+  <button class="w-32 bg-blue-500 text-white p-2 my-3" type="button">
+    <%= link_to 'New Recipe', new_recipe_path %>
+  <button>
+  <ul class="w-full flex flex-col gap-2 p-4 items-center">
+    <% @recipes.each do |recipe| %>
+      <li class="w-full flex border-2 p-5 justify-between gap-5">
+        <div class="flex flex-col items-center p-2 gap-1 w-2/5">
           <h3 class="font-semibold"><%= recipe.name %></h3>
-          <button class="p-2 text-center bg-red-500">Delete</button>
+          <%= link_to "Details", recipe_path(recipe), class: "p-2 text-center text-white bg-blue-500" %>
+          <%= link_to "Delete", recipe, method: "delete", class: "p-2 text-center text-white bg-red-500" %>
         </div>
-        <p class="p-2"><%= recipe.description %></p>
-      </a>
-    </li>
-  <% end %>
-</ul>
+        <p class="w-full p-2"><%= recipe.description %></p>
+      </li>
+    <% end %>
+  </ul>
+</main>
