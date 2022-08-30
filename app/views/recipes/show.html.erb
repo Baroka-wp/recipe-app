@@ -1,13 +1,20 @@
 <div class="card d-flex justify-content-center mt-4" style="width: 80%; margin:auto">
   <div class="card-body">
-    <h5 class="card-title"><%= @recipe.name%> </h5>
+    <div class="d-flex justify-content-between">
+      <h5 class="card-title"><%= @recipe.name%></h5>
+      <% if @recipe.public %>
+        <%= button_to "Mark as private", update_recipe_path(@recipe), method: :patch, class:"btn btn-sm btn-light" %>
+      <% else %>
+        <%= button_to "Mark as public", update_recipe_path(@recipe), method: :patch, class:"btn btn-sm btn-light"  %>
+      <% end %>
+    </div>
     <h6 class="card-subtitle mb-2 text-info">Preparation time: <%= @recipe.prep_time%>(min)</h6>
     <h6 class="card-subtitle mb-2 text-info">cooking time: <%= @recipe.cooking_time%>(min)</h6>
     <small class="opacity-50 text-nowrap"> Description</small>
     <p class="card-text"><%= @recipe.description%></p>
     <% if can? :manage, @recipe %>
        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-sm btn-salmon" data-toggle="modal" data-target="#exampleModalCenter">add ingredient</button>
+        <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModalCenter">add ingredient</button>
     <% end %>
   </div>
 </div>

@@ -7,13 +7,13 @@ class FoodsController < ApplicationController
   end
 
   def show
-    @food = Food.find(params[:id])
+    redirect_to foods_path
   end
 
   def create
     @food = current_user.foods.new(food_params)
     if @food.save
-      redirect_to @food
+      redirect_to foods_path
     else
       render :new
     end

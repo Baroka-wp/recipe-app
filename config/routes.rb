@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   
   root to: 'recipes#public'
   get '/public_recipes', to: 'recipes#public', as: :public_recipes
+  patch '/recipes/:id', to: 'recipes#mark_as_public', as: :update_recipe
   resources :users
   resources :foods, except: [:update]
 
-  resources :recipes, except: [:update] do
+  resources :recipes do
     resources :recipe_foods, only: [:create, :new, :edit, :update, :destroy]
   end
 

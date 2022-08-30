@@ -46,6 +46,12 @@ class RecipesController < ApplicationController
     end
   end
 
+  def mark_as_public
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(public: !@recipe.public)
+    redirect_to @recipe
+  end
+
   private
 
   def recipe_params
