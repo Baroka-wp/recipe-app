@@ -1,55 +1,60 @@
 class RecipesController < ApplicationController
-  def index
-    @recipes = Recipe.where(user_id: current_user.id).includes(:recipe_foods)
+  load_and_authorize_resource
+  before_action :authenticate_user!, except: [:public]
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml { render xml: @recipes }
-      format.json { render json: @recipes }
-    end
+  def index
+    @recipes = current_user.recipes.includes(:recipe_foods, :user)
   end
 
   def show
-    @recipe = Recipe.where(user_id: current_user.id).find(params[:id])
+    @recipe = Recipe.includes(:recipe_foods).find(params[:id])
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+    flash[:notice] = 'Recipe deleted successfully'
+    redirect_to recipes_path
+  end
+
+  def create
+    @recipe = current_user.recipes.new(recipe_params)
+    @recipe.user = current_user
+    if @recipe.save
+      redirect_to @recipe
+    else
+      render :new
+    end
   end
 
   def new
     @recipe = Recipe.new
-    respond_to do |format|
-      format.html { render :new, locals: { recipe: @recipe } }
+  end
+
+  def public
+    @recipes = Recipe.includes(:recipe_foods, :foods,
+                               :user).where(public: true).order(created_at: :desc).map do |recipe|
+      {
+        id: recipe.id,
+        name: recipe.name,
+        description: recipe.description,
+        author: recipe.user.name,
+        created_at: recipe.created_at,
+        items: recipe.recipe_foods_count,
+        total_price: recipe.foods.map(&:price).sum
+      }
     end
   end
 
-  def create
-    # new object from params
-    @recipe = Recipe.new(post_params)
-
-    # respond_to block
-    respond_to do |format|
-      format.html do
-        if @recipe.save
-          # success message
-          flash[:success] = 'Recipe created successfully'
-          # redirect to index
-          redirect_to recipes_url
-        else
-          flash.now[:error] = 'Error: Recipe could not be created'
-          # render new
-          render :new, locals: { recipe: @recipe }
-        end
-      end
-    end
-  end
-
-  def destroy
-    Recipe.find(params[:id]).delete
+  def mark_as_public
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(public: !@recipe.public)
+    redirect_to @recipe
   end
 
   private
 
-  def post_params
-    post_params = params.require(:recipe).permit(:name, :prep_time, :cooking_time, :description, :public)
-    post_params[:user_id] = current_user.id
-    post_params
+  def recipe_params
+    params.require(:recipe).permit(:name, :description, :prep_time, :cooking_time)
   end
 end

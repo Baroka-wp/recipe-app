@@ -1,9 +1,27 @@
-<div class="log_menu">
-        <% if user_signed_in? %>
-            <div class="user_name">Hi! <%= link_to current_user.name, user_path(current_user) %></div>
-            <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: false }, class:"log_out" %>
-        <% else %>
-            <li><%= link_to 'Login', new_user_session_path %></li>
-            <li><%= link_to 'Sign up', new_user_registration_path %></li>
-        <% end %>
-</div>
+<header class="p-3 bg-dark">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-around">
+            <h3><a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                Recipe App
+            </a></h3>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><%= link_to "Public recipes", public_recipes_path, class:"nav-link px-2 text-while"%></li>
+                <% if user_signed_in? %>     
+                    <li><%= link_to "Foods", foods_path, class:"nav-link px-2 text-while"%></li>
+                    <li><%= link_to link_to "Recipes", recipes_path, class:"nav-link px-2 text-while"%></li>
+                <% end %>
+            </ul>
+            <% if user_signed_in? %>
+                <div class="text-end">
+                    <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: false }, class:"btn btn-warning" %>
+                </div>  
+            <% else %>
+                <div class="text-end">
+                    <%= link_to 'Sign up', new_user_registration_path, class:"btn btn-salmon" %>
+                    <%= link_to 'Login', new_user_session_path, class: "btn btn-outline-light me-2"%>
+                </div>
+            <% end %>
+        </div>
+    </div>
+  </header>

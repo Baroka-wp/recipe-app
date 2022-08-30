@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.2'
-# ruby '3.0.3'
+# ruby '3.1.2'
+ruby '3.0.3'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
@@ -19,6 +19,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'cancancan'
 gem 'devise'
 gem 'devise-i18n'
+gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 
 group :development, :test do
   gem 'database_cleaner'

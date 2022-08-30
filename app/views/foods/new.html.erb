@@ -1,25 +1,2 @@
-<%= form_with model: @food, url: foods_url, class: 'flex flex-col gap-1 items-center mt-24 border-2 p-4' do |f| %>
-  <div class="flex gap-3">
-    <%= f.label :name, class: 'text-semibold' %>
-    <%= f.text_field :name, class: 'border-1 shadow-md p-1 outline-blue-500' %>
-  </div>
-
-  <div class="flex gap-3">
-    <%= f.label :measurement_unit, class: 'text-semibold' %>
-    <%= f.text_field :measurement_unit, class: 'border-1 shadow-md h-16 outline-blue-500 p-1' %>
-  </div>
-
-  <div class="flex gap-3">
-    <%= f.label :price, class: 'text-semibold' %>
-    <%= f.text_field :price, class: 'border-1 shadow-md h-16 outline-blue-500 p-1' %>
-  </div>
-
-  <div class="flex gap-3">
-    <%= f.label :quantity, class: 'text-semibold' %>
-    <%= f.text_field :quantity, class: 'border-1 shadow-md h-16 outline-blue-500 p-1' %>
-  </div>
-
-  <div class="bg-green-500 mt-4 rounded-sm p-2 text-white">
-    <%= f.submit "Add new food" %>
-  </div>
-<% end %>
+<h1>Add new food</h1>
+<%= render 'form'%>

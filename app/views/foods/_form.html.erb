@@ -1,0 +1,6 @@
+<%= form_with model: @food, local: true do |form|%>
+        <%= form.text_field :name, placeholder:"Food name", class:"form_control" %>
+        <%= form.text_field :measurement_unit,placeholder:"measurement unit", class:"form_control" %>
+        <%= form.number_field :price, value: number_to_currency(form.object.price.to_f), step: :any , placeholder:"Food price", class:"form_control"%>
+    <%= form.submit "Create", class: "btn btn-info btn-sm" %>
+<% end %>

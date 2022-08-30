@@ -18,7 +18,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_233756) do
     t.string "name"
     t.text "measurement_unit"
     t.integer "price"
-    t.integer "quantity"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_233756) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "recipe_foods_count"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 

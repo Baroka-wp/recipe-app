@@ -1,24 +1,25 @@
-<main class="p-5 flex flex-col">
-  <h1 class="font-bold text-3xl">Foods page</h1>
-  <button class="w-32 self-end bg-blue-500 text-white p-2 my-3" type="button">
-    <%= link_to 'Add Food', new_food_path %>
-  <button>
-  <section class="w-11/12 self-center flex flex-col">
-  <div class="w-full flex">
-    <p class="p-2 w-full text-center">Food</p>
-    <p class="p-2 w-full text-center">Measurement unit</p>
-    <p class="p-2 w-full text-center">Unit price</p>
-    <p class="p-2 w-full text-center">Actions</p>
-  </div>
-  <ul class="w-full flex flex-col gap-2 p-4 items-center">
-    <% @foods.each do |food| %>
-      <li class="w-full flex border-1 p-5">
-        <p class="w-full p-2 text-center"><%= food.name %></p>
-        <p class="w-full p-2 text-center"><%= food.measurement_unit %></p>
-        <p class="w-full p-2 text-center"><%= food.price %></p>
-        <div class="w-full p-2 text-center"><%= link_to "Delete", food, method: "delete", class: "p-2 text-center text-white bg-red-500" %></div>
-      </li>
+<h3 class="text-center mt-4">My Foods </h3>
+<table class="table table-ligth table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Food name</th>
+      <th scope="col">Measurement unit</th>
+      <th scope="col">Price</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @foods.each_with_index do |food, index| %>
+    <tr>
+      <th scope="row"><%=index%></th>
+      <td><%= food.name %></td>
+      <td><%= food.measurement_unit %></td>
+      <td>$<%= food.price %></td>
+      <td><%= button_to 'delete', food, data: { confirm: "This action will delete the item "}, method: :delete , class:"btn btn-sm btn-danger" if can? :manage, food%></td>
+    </tr>
     <% end %>
-  </ul>
-  </section>
-</main>
+  </tbody>
+</table>
+
+<%= link_to "Add food", new_food_path, class: "btn btn-info btn-sm ml-3 mt-3"%>

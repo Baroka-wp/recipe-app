@@ -1,55 +1,38 @@
 class FoodsController < ApplicationController
-  def index
-    @foods = Food.where(user_id: current_user.id).includes(:recipe_foods)
+  load_and_authorize_resource
+  before_action :authenticate_user!
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml { render xml: @foods }
-      format.json { render json: @foods }
-    end
+  def index
+    @foods = current_user.foods
   end
 
   def show
-    @food = Food.where(user_id: current_user.id).find(params[:id])
+    redirect_to foods_path
+  end
+
+  def create
+    @food = current_user.foods.new(food_params)
+    if @food.save
+      redirect_to foods_path
+    else
+      render :new
+    end
   end
 
   def new
     @food = Food.new
-    respond_to do |format|
-      format.html { render :new, locals: { food: @food } }
-    end
-  end
-
-  def create
-    # new object from params
-    @food = Food.new(post_params)
-
-    # respond_to block
-    respond_to do |format|
-      format.html do
-        if @food.save
-          # success message
-          flash[:success] = 'Food created successfully'
-          # redirect to index
-          redirect_to foods_url
-        else
-          flash.now[:error] = 'Error: Food could not be created'
-          # render new
-          render :new, locals: { food: @food }
-        end
-      end
-    end
   end
 
   def destroy
-    Food.find(params[:id]).delete
+    @food = Food.find(params[:id])
+    @food.destroy
+    flash[:notice] = 'Food deleted successfully'
+    redirect_to request.path
   end
 
   private
 
-  def post_params
-    post_params = params.require(:food).permit(:name, :measurement_unit, :price, :quantity)
-    post_params[:user_id] = current_user.id
-    post_params
+  def food_params
+    params.require(:food).permit(:name, :price, :measurement_unit)
   end
 end

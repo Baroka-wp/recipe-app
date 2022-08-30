@@ -1,23 +1,42 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-recipes = Recipe.create([
-  {
-    name: "Fufu et Pondu",
-    prep_time: 10,
-    cooking_time: 5,
-    description: "Made with Maize flour, and eaten with Pondu, Meat sauce or other supplement.",
-    public: true,
-  },
-  {
-    name: "Walmar",
-    prep_time: 10,
-    cooking_time: 20,
-    description: "Made with Rice and Beans.",
-    public: true,
-  }
-])
+require "faker"
+
+5.times do |user|
+    User.create(
+        email: Faker::Internet.email,
+        password: '123456',
+        name: Faker::Name.name,
+    )
+end
+
+  
+User.all.each do |user|
+    3.times do |food|
+        i = rand(0..3)
+        Food.create(
+            name: Faker::Food.ingredient,
+            price: Faker::Number.between(from: 4, to: 100),
+            measurement_unit: Faker::Food.metric_measurement,
+            user_id: user.id
+        )
+    end
+end
+
+User.all.each do |user|
+    3.times do |recipe|
+        i = rand(0..3)
+        Recipe.create(
+            name: Faker::Food.dish,
+            description: Faker::Food.description,
+            prep_time: Faker::Number.between(from: 1, to: 10),
+            cooking_time: Faker::Number.between(from: 1, to: 10),
+            user_id: user.id
+        )
+    end
+end
+
+
+10.times do |t|
+    RecipeFood.create(quantity: Faker::Food.measurement, recipe_id: Recipe.ids.sample, food_id: Food.ids.sample) 
+end
+
+# rebecka@mayer.com

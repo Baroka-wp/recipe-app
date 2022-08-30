@@ -1,18 +1,18 @@
-<main class="p-5 flex flex-col">
-  <h1 class="font-bold text-3xl">Recipes page</h1>
-  <button class="w-32 bg-blue-500 text-white p-2 my-3" type="button">
-    <%= link_to 'Add Recipe', new_recipe_path %>
-  <button>
-  <ul class="w-full flex flex-col gap-2 p-4 items-center">
+<h4 class="text-center">My Recipes</h4>
+<div class="list-group w-80">
     <% @recipes.each do |recipe| %>
-      <li class="w-full flex border-2 p-5 justify-between gap-5">
-        <div class="flex flex-col items-center p-2 gap-1 w-2/5">
-          <h3 class="font-semibold"><%= recipe.name %></h3>
-          <%= link_to "Details", recipe_path(recipe), class: "p-2 text-center text-white bg-blue-500" %>
-          <%= link_to "Delete", recipe, method: "delete", class: "p-2 text-center text-white bg-red-500" %>
+        <div class="list-group-item list-group-item-action rounded-3 d-flex gap-4 py-3 px-3" aria-current="true">
+            <div class="d-flex gap-4 w-100 justify-content-between">
+                <div>
+                    <h4 class="mb-0"><%=link_to recipe.name, recipe %></h4>
+                    <p class="mb-0 opacity-75"><%= recipe.description.truncate(100)%></p>
+                    <p class="text-info"><%= recipe.recipe_foods_count %> ingredients</p>
+                    <% if can? :manage, recipe %>
+                        <%= button_to 'delete', recipe, data: { confirm: "This action will delete the item "}, method: :delete, class:"btn btn-sm btn-danger"%>
+                    <% end %>
+                </div>
+                <small class="opacity-50 text-nowrap"><%= time_ago_in_words(recipe.created_at) %></small>
+            </div>
         </div>
-        <p class="w-full p-2"><%= recipe.description %></p>
-      </li>
-    <% end %>
-  </ul>
-</main>
+    <% end%>
+</div>
