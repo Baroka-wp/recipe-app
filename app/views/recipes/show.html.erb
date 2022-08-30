@@ -2,10 +2,12 @@
   <div class="card-body">
     <div class="d-flex justify-content-between">
       <h5 class="card-title"><%= @recipe.name%></h5>
-      <% if @recipe.public %>
-        <%= button_to "Mark as private", update_recipe_path(@recipe), method: :patch, class:"btn btn-sm btn-light" %>
-      <% else %>
-        <%= button_to "Mark as public", update_recipe_path(@recipe), method: :patch, class:"btn btn-sm btn-light"  %>
+      <% if can? :manage, @recipe%>
+        <% if @recipe.public %>
+          <%= button_to "Mark as private", update_recipe_path(@recipe), method: :patch, class:"btn btn-sm btn-light" %>
+        <% else %>
+          <%= button_to "Mark as public", update_recipe_path(@recipe), method: :patch, class:"btn btn-sm btn-light"  %>
+        <% end %>
       <% end %>
     </div>
     <h6 class="card-subtitle mb-2 text-info">Preparation time: <%= @recipe.prep_time%>(min)</h6>
