@@ -19,7 +19,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'cancancan'
 gem 'devise'
 gem 'devise-i18n'
-gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
+gem 'faker'
 
 group :development, :test do
   gem 'database_cleaner'
