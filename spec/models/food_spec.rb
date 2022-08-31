@@ -2,27 +2,27 @@ require 'rails_helper'
 
 RSpec.describe Food, type: :model do
   before :each do
-    @user = User.create(name: "Tom", email:"tom@dev.co", password: "password", password_confirmation: "password")
+    @user = User.create(name: 'Tom', email: 'tom@dev.co', password: 'password', password_confirmation: 'password')
   end
   context 'validations' do
     it 'is valid with valid attributes' do
-      food = Food.create(name: "Pasta", measurement_unit: "Litter", price: 10, user_id: @user.id)
+      food = Food.create(name: 'Pasta', measurement_unit: 'Litter', price: 10, user_id: @user.id)
       expect(food).to be_valid
     end
     it 'is not valid without a name' do
-      food = Food.create(name: nil, measurement_unit: "Litter", price: 10, user_id: @user.id)
+      food = Food.create(name: nil, measurement_unit: 'Litter', price: 10, user_id: @user.id)
       expect(food).to_not be_valid
     end
     it 'is not valid without mesurement_unit' do
-      food = Food.create(name: "Pasta", measurement_unit: nil, price: 10, user_id: @user.id)
+      food = Food.create(name: 'Pasta', measurement_unit: nil, price: 10, user_id: @user.id)
       expect(food).to_not be_valid
     end
     it 'is not valid without price' do
-      food = Food.create(name: "Pasta", measurement_unit: "Litter", price: nil, user_id: @user.id)
+      food = Food.create(name: 'Pasta', measurement_unit: 'Litter', price: nil, user_id: @user.id)
       expect(food).to_not be_valid
     end
     it 'is not valid without user id' do
-      food = Food.create(name: "Pasta", measurement_unit: "Litter", price: 10, user_id: nil)
+      food = Food.create(name: 'Pasta', measurement_unit: 'Litter', price: 10, user_id: nil)
       expect(food).to_not be_valid
     end
   end
