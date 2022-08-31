@@ -1,0 +1,7 @@
+<%= form_with model: @recipe, local: true do |form|%>
+  <%= form.text_field :name, placeholder:"Recipe name", class:"form_control" %>
+  <%= form.number_field :prep_time, step: :any , placeholder:"Prep time", class:"form_control"%>
+  <%= form.number_field :cooking_time, step: :any , placeholder:"Cooking time", class:"form_control"%>
+  <%= form.text_field :description, placeholder:"Description", class:"form_control" %>
+  <%= form.submit "Create", class: "btn btn-info btn-sm" %>
+<% end %>
