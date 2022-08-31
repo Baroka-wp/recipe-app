@@ -30,7 +30,7 @@ class RecipeFoodsController < ApplicationController
     end
   end
 
-  def shoppingList
+  def shopping_list
     # select user's recipe
     foods = Food.includes(:recipes).where(user: current_user)
     # filter food missing for all recipes
