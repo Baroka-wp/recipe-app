@@ -1,0 +1,25 @@
+<h3 class="text-center mt-4">My Foods </h3>
+<table class="table table-ligth table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Food name</th>
+      <th scope="col">Measurement unit</th>
+      <th scope="col">Price</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @foods.each_with_index do |food, index| %>
+    <tr>
+      <th scope="row"><%=index%></th>
+      <td><%= food.name %></td>
+      <td><%= food.measurement_unit %></td>
+      <td>$<%= food.price %></td>
+      <td><%= button_to 'delete', food, data: { confirm: "This action will delete the item "}, method: :delete , class:"btn btn-sm btn-danger" if can? :manage, food%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Add food", new_food_path, class: "btn btn-info btn-sm ml-3 mt-3"%>

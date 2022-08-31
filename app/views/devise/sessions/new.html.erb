@@ -1,0 +1,10 @@
+<div class="d-flex align-items-center justify-content-center" style="width=500px" >
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", id:"inputEmail", class:"form-control", placeholder:"Email address"%>
+      <%= f.password_field :password, autocomplete: "new-password", id:"inputPassword1", class:"form-control", placeholder:"Password "  %>
+      <%= f.submit "Log in" %> or 
+      <%= render "devise/shared/links" %>
+    <% end %>
+</div>

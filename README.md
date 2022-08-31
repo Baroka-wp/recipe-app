@@ -31,10 +31,10 @@ In the terminal, go to your file directory and run this command.
 
 > Clone the repository
 ```
-$ git clone https://github.com/Baroka-wp/sinatraBlog
+$ git clone https://github.com/Baroka-wp/recipe-app
 ```
 ```
-$ cd sinatraBlog
+$ cd recipe-app
 ```
 > Install Gemfile
 
@@ -63,23 +63,23 @@ $ rspec
 ```
 
 
-## Author
+## Author 1
 
 👤 **Irotori Baroka** 
 
 - LinkedIn: [![LinkedIn Badge](https://img.shields.io/badge/-baroka-white?logo=LinkedIn&logoColor=0A66C2&style=plastic)](https://linkedin.com/in/baroka)
-
 - GitHub: [![GitHub Badge](https://img.shields.io/badge/-baroka--wp-white?logo=GitHub&logoColor=181717&style=plastic)](https://github.com/baroka-wp)
-
 - Twitter: [![Twitter Badge](https://img.shields.io/badge/-birotori-white?logo=Twitter&logoColor=1DA1F2&style=plastic)](https://twitter.com/birotori)
-
 - Gmail: [![Gmail Badge](https://img.shields.io/badge/-baroka--Irotori-white?logo=Gmail&logoColor=EA4335&style=plastic)](mailto:birotori@gmail.com)
-  
- 
 
-  
-  
-  
+## Author 2
+
+👤 **Jonathan Sivahera**
+
+- GitHub: [@jssol](https://github.com/jssol)
+- Twitter: [@jsivahera](https://twitter.com/jsivahera)
+- LinkedIn: [jsivahera](https://linkedin.com/in/jsivahera)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
