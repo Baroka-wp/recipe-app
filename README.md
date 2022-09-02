@@ -11,6 +11,7 @@ The Recipe app keeps track of all your recipes, ingredients, and inventory. It w
 - [x] Linter: [Rubocop](https://rubocop.org/)
 - [x] VS Code
 
+## [Go live](https://woomii.herokuapp.com/)
 
 ## Getting Started
 
